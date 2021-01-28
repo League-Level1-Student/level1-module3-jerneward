@@ -1,10 +1,13 @@
 package _03_jars._1_intro_to_jars;
 
-
 public class RobotInAJar {
+	public static void main(String[] args) {
+		
+	
 	
 	/* 1.   Create a String variable and initialize it to your name  */
 	
+	String Jerne; 
 	
 	/* If you did not make any syntax errors, there should be no red lines under your code. 
 	 * This is because the type String is part of the basic Java language that all programs  
@@ -12,6 +15,8 @@ public class RobotInAJar {
 	
 	
 	/* 2.   Now declare a Robot variable and create a new Robot  */
+	
+	Robot rob = new Robot; 
 
 	
 	/* Even if you did not make any syntax errors, there should be a red line under the word Robot.
@@ -55,6 +60,8 @@ public class RobotInAJar {
 	 * Select it. If all the red lines have disappeared, you can now complete the draw method below.
 	 * Run the program from the RobotInAJarRunner class and a shape should be drawn.
 	 */
+	
+	}
 	
 	public void draw() {
 		/*** Write code to make your robot draw a shape here ****/
