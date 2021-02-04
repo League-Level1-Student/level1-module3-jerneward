@@ -16,7 +16,7 @@ public class RobotInAJar {
 	
 	/* 2.   Now declare a Robot variable and create a new Robot  */
 	
-	Robot rob = new Robot; 
+	Robot rob = new Robot(); 
 
 	
 	/* Even if you did not make any syntax errors, there should be a red line under the word Robot.
