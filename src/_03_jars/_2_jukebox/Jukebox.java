@@ -5,6 +5,8 @@ package _03_jars._2_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,15 +25,24 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, ActionListener {
 
+	JButton button1 = new JButton();
+	JButton button2 = new JButton();
+	Song song1 = new Song("sza-good-days.mp3"); 
+	Song song2 = new Song("Kanye West - Bound 2.mp3");
+	
+	
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
+    	
 
 		// 3. Play the Song
 
+    	song1.play();
+    	
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
@@ -36,6 +50,20 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    	
+    	JFrame frame = new JFrame();
+    	JPanel panel = new JPanel();
+    	panel.add(button1);
+    	panel.add(button2);
+    	frame.add(panel);
+    	frame.setVisible(true);
+    	frame.setSize(500, 500);
+    	button1.setText("Good Days");
+    	button2.setText("Bound 2");
+    	button1.addActionListener(this);
+    	button2.addActionListener(this);
+    	
+    	
     }
     
     
@@ -45,6 +73,18 @@ public class Jukebox implements Runnable {
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
 	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+		if(arg0.getSource()== button1) {
+		song1.play();
+	}
+		if(arg0.getSource()== button2) {
+			song2.play();
+		}
 
 }
 
@@ -131,5 +171,7 @@ class Song {
 			return this.getClass().getResourceAsStream(songAddress);
 		}
 	}
-}
+	
+}}
+
 
