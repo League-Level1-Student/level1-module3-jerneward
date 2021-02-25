@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -20,6 +21,9 @@ import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 
+	JFrame frame = new JFrame("The Magic Box contains many secrets...");
+	
+	
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -51,7 +55,6 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void createUI() {
-		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
@@ -77,15 +80,34 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		MediaPalace palace = new MediaPalace();
+		try {
+			palace.loadImageFromTheInternet("https://graphicriver.img.customer.envatousercontent.com/files/264755005/treasure%20chest%20preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e29f90a074b2d9b0b6d21226628305f0");
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			frame.pack(); }
+		
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		
+		MediaPalace palace = new MediaPalace();
+		try {
+			palace.loadImageFromTheInternet("https://graphicriver.img.customer.envatousercontent.com/files/264755005/treasure%20chest%20preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e29f90a074b2d9b0b6d21226628305f0");
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			frame.pack();
+		}
 		// TODO Auto-generated method stub
 		
 	}
 
+
+	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
