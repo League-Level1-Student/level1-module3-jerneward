@@ -13,15 +13,21 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	JFrame frame = new JFrame("The Magic Box contains many secrets...");
+	JLabel label = new JLabel();
 	
 	
 	/*
@@ -80,28 +86,22 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		MediaPalace palace = new MediaPalace();
-		try {
-			palace.loadImageFromTheInternet("https://graphicriver.img.customer.envatousercontent.com/files/264755005/treasure%20chest%20preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e29f90a074b2d9b0b6d21226628305f0");
-		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			frame.pack(); }
+		int x = e.getX();
+		int y = e.getY();
+		if(x<100) {
+			showPicture("smiley_blue.jpg");	
+		}
+		else if(x>100) {
+			JOptionPane.showMessageDialog(null, "You found the magic box!");
+		}
+	
 		
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
-		MediaPalace palace = new MediaPalace();
-		try {
-			palace.loadImageFromTheInternet("https://graphicriver.img.customer.envatousercontent.com/files/264755005/treasure%20chest%20preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e29f90a074b2d9b0b6d21226628305f0");
-		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			frame.pack();
-		}
+	
 		// TODO Auto-generated method stub
 		
 	}
@@ -126,6 +126,34 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		
 	}
 
+	private void showPicture(String jackinthebox) {
+	    try {
+	        JLabel imageLabel = createLabelImage(jackinthebox);
+	        JFrame frame = new JFrame();
+	  //      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.add(imageLabel);
+	        frame.setVisible(true);
+	        frame.pack();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	private JLabel createLabelImage(String fileName) {
+		try {
+	            URL imageURL = getClass().getResource(fileName);
+	            if (imageURL == null) {
+		       System.err.println("Could not find image " + fileName);
+		       return new JLabel();
+	            } else {
+	                Icon icon = new ImageIcon(imageURL);
+	                JLabel imageLabel = new JLabel(icon);
+	                return imageLabel;
+	            }
+	        } catch (Exception e) {
+	            System.err.println("Could not find image " + fileName);
+	            return new JLabel();
+	        }
+	}
 }
 
 
